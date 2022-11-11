@@ -2,24 +2,29 @@
 {% block title %}Login Page{% endblock %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
+{% if not user.is_authenticated %}
 <div class="row my-4 p-0">
-    <div class="col-md-6 offset-md-3 p-0">
+    <div class="col-md-5 offset-md-4 p-0">
         <div class="card shadow border-0  bg-white">
             <div class="card-header bg-dark text-white">
                 Login
             </div>
             
             <diV class="card-body">
+                <div class="d-flex justify-content-center p-0 m-1">
+                    <img class="img-fluid text-center" src="/media/other_images/login.png" width="90" height="90"/>
+                </div>
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <input class="btn btn-success mt-2" type="submit" value="Login">
+                    <input class="btn btn-success mt-2 w-100" type="submit" value="Login">
                 </form>
             </diV>
         </div>
     </div>
 </div>
 
-
+{% endif%}
 {% endblock %}

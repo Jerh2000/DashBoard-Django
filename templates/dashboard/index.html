@@ -233,10 +233,10 @@
                     var mychart3 = new Chart(ctx3, {
                         type: 'pie',
                         data: {
-                            labels: [{% for birth in birth %} '{{birth.year}}', {% endfor %}],
+                            labels: [{% for birth in births_year %} '{{birth.year}}', {% endfor %}],
                     datasets: [{
-                        label: 'Muertes por año',
-                        data: [{% for birth in birth %} {{ birth.cantidad }}, {% endfor %}],
+                        label: 'Births per year',
+                        data: [{% for birth in births_year %} {{ birth.dcount }}, {% endfor %}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -279,10 +279,10 @@
                     var myChart4 = new Chart(ctx4, {
                         type: 'bar',
                         data: {
-                            labels: [{% for birth in birth %} '{{birth.year}}',{% endfor %}],
+                            labels: [{% for birth in birth_gender %} '{{birth.gender}}',{% endfor %}],
                     datasets: [{
-                        label: 'Nacimientos por año',
-                        data: [{% for birth in birth %} {{ birth.cantidad }}, {% endfor %}],
+                        label: 'Births per gender',
+                        data: [{% for birth in birth_gender %} {{ birth.dcount }}, {% endfor %}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',

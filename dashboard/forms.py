@@ -8,6 +8,16 @@ class BirthForm(forms.ModelForm):
     class Meta:
         model = Birth
         fields = '__all__'
+        widgets = {
+            'year': TextInput(attrs={
+                    'class': "form-control my-2",
+                    'placeholder': 'Year'
+                }),
+            'cantidad': TextInput(attrs={
+                'class': "form-control my-2",
+                'placeholder': 'Amount'
+                }),
+        }
         
 class EducationLevelForm(forms.ModelForm):
     class Meta:

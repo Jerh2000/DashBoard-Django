@@ -30,7 +30,7 @@ CATEGORYLEVEL = (
 
 class Flights(models.Model):
     year = models.CharField(max_length=100, null=True)
-    city = models.CharField(max_length=255, choices=CATEGORYCITY)
+    city = models.CharField(max_length=255, choices=CATEGORYCITY,null= True)
     cantidad = models.PositiveIntegerField(null=True)
     
     def __str__(self):
@@ -40,7 +40,7 @@ class Flights(models.Model):
 
 class EducationLevel(models.Model):
     year = models.CharField(max_length=100, null=True)
-    nivel = models.CharField(max_length=255, choices=CATEGORYLEVEL)
+    nivel = models.CharField(max_length=255, choices=CATEGORYLEVEL,null = True)
     cantidad = models.PositiveIntegerField(null=True)
 
     def __str__(self):
@@ -50,7 +50,7 @@ class EducationLevel(models.Model):
 class Birth(models.Model):
     year = models.CharField(max_length=100, null=True)
     cantidad = models.PositiveIntegerField(null=True)
-    categoria = models.CharField(max_length=255, choices=CATEGORYGENDER)
+    gender = models.CharField(max_length=255, choices=CATEGORYGENDER, null= True)
 
     def __str__(self):
         return f'{self.year}'

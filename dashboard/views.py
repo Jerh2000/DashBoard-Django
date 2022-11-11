@@ -18,6 +18,9 @@ def index(request):
 
     flights_yearc = Flights.objects.values('year').annotate(dcount=Sum('cantidad')).order_by('year')
     flights_city = Flights.objects.values('city').annotate(dcount=Sum('cantidad')).order_by('city')
+
+    births_year = Birth.objects.values('year').annotate(dcount = Sum('cantidad')).order_by('year');
+    birth_gender = Birth.objects.values('gender').annotate(dcount = Sum('cantidad')).order_by('gender');
     
     birth_count = birth.count()
     
@@ -29,7 +32,8 @@ def index(request):
         'educationlevel_level' : educationlevel_level,
         'flights_yearc' : flights_yearc,
         'flights_city' : flights_city,
-
+        'births_year' : births_year,
+        'birth_gender' :birth_gender,
         'birth_count': birth_count,
         'customer_count': customer_count,
     }

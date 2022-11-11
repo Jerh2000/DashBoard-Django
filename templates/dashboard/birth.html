@@ -34,7 +34,7 @@
                         <thead class="bg-info text-white">
                             <tr>
                                 <th scope="col">Año</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Género</th>
                                 <th scope="col">Cantidad de nacimientos</th>
                                 <th scope="col">Activity</th>
                             </tr>
@@ -43,7 +43,7 @@
                             {% for birth in birth %}
                             <tr>
                                 <td>{{ birth.year }}</td>
-                                <td>{{ birth.categoria }}</td>
+                                <td>{{ birth.gender }}</td>
                                 <td>{{ birth.cantidad }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm mr-2"

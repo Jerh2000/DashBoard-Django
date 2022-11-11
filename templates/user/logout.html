@@ -5,13 +5,19 @@
 {% block content %}
 <div class="row my-4">
     <div class="col-md-6 offset-md-3">
-        <div class="border p-3 bg-white">
-            <h4>Logout Page</h4>
-            <hr>
-            <div class="alert alert-info">
-                <h5>You have been logged out</h5>
+        <div class="card border-0 shadow p-0 m-0">
+            <div class="card-header bg-dark text-white">
+                Logout
             </div>
-            <a href="{% url 'user-login' %}">Login</a>
+            <div class="card-body">
+                <div class="d-flex justify-content-center p-0 m-1">
+                    <img class="img-fluid text-center" src="/media/other_images/logout.png" width="90" height="90"/>
+                </div>
+                <div class="alert alert-info">
+                    <h5 class="text-center text-success">You have been logged out</h5>
+                </div>
+                <a class="btn btn-primary w-100" href="{% url 'user-login' %}">Login again</a>
+            </div>
         </div>
     </div>
 </div>
