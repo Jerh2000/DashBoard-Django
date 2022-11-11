@@ -4,6 +4,8 @@ Cartagena Statistics Dashboard
 ## Main Dashboard
 ![image](https://user-images.githubusercontent.com/61768185/201368458-7910e2aa-5c8f-4254-82f4-72058d587886.png)
 
+![image](https://user-images.githubusercontent.com/61768185/201369472-4fce3a5d-cf9d-4bc4-93c5-f9b9b12190a9.png)
+
 
 ## Registro de maestro de nivel de educación
 ![image](https://user-images.githubusercontent.com/61768185/201368664-606bd2a6-306f-4213-8705-cee8b1a15732.png)
