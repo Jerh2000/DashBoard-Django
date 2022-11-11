@@ -1,0 +1,65 @@
+{% extends 'partials/_Layout.html' %}
+{% block title %}Cartagena Flights{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="row">
+    <div class="card shadow px-0">
+        <div class="card-header bg-dark text-white mx-0">
+            Cartagena Flights
+        </div>
+        <div class="card-body">
+           <div class="row">
+                <div class="col-md-4">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="card card-body border-0">
+                        <div class="d-flex justify-content-center p-0 m-0">
+                            <img class="img-fluid text-center" src="/media/other_images/airplane.png" width="90" height="90"/>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input class="btn btn-success btn-block w-100 mt-3" type="submit" value="Add">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-dark table-striped">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th width="20%" scope="col">Año</th>
+                                <th width="40%" scope="col">Ciudad/Lugar</th>
+                                <th width="20%" scope="col">Cantidad</th>
+                                <th width="20%" scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for flight in flights %}
+                            <tr>
+                                <td>{{ flight.year }}</td>
+                                <td>{{ flight.city }}</td>
+                                <td>{{ flight.cantidad }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm mr-2"
+                                        href="{% url 'dashboard-flights-edit' flight.id %}">Edit</a>
+                                   
+                                    <a class="btn btn-danger btn-sm ml-2"
+                                    href="{% url 'dashboard-flights-delete' flight.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

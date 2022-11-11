@@ -1,0 +1,326 @@
+{% extends 'partials/_Layout.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card bg-white">
+            <div class="card-header bg-dark text-white mx-0">
+                Enrollment per year
+            </div>
+            <div class="card-body">
+                <canvas id="educationlevel" width="400" height="300"></canvas>
+                <script>
+                    var gfeducationlevel = document.getElementById('educationlevel').getContext('2d');
+
+                    var myChart1 = new Chart(gfeducationlevel, 
+                    {
+                        type: 'doughnut',
+                        label: 'Enrollment per year',
+                        data: {
+                            labels: [{% for edlevel in educationlevel_year %} '{{edlevel.year}}', {% endfor %}],
+                            datasets: [{
+                                        label: 'Enrollment per year',
+                                    data: [
+                                        {% for edlevel in educationlevel_year %} {{ edlevel.dcount }}, {% endfor %}
+                                    ],
+                                    backgroundColor: [
+                                        'rgba(255, 160, 122)',
+                                        'rgba(88, 214, 141)',
+                                        'rgba(255, 195, 0)',
+                                        'rgba(77, 208, 225)',
+                                        'rgba(0, 204, 102)',
+                                        'rgba(42, 18, 64, 1)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 160, 122)',
+                                        'rgba(88, 214, 141)',
+                                        'rgba(255, 195, 0)',
+                                        'rgba(77, 208, 225)',
+                                        'rgba(0, 204, 102)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card bg-white">
+            <div class="card-header bg-dark text-white mx-0">
+                People by level of education
+            </div>
+            <div class="card-body">
+                <canvas id="educationlevelbar" width="400" height="300"></canvas>
+                <script>
+                    var gfeducationlevelbar = document.getElementById('educationlevelbar').getContext('2d');
+
+                    var myChart1 = new Chart(gfeducationlevelbar, 
+                    {
+                        type: 'bar',
+                        label: 'People by level of education',
+                        data: {
+                            labels: [{% for edlevel in educationlevel_level %} '{{edlevel.nivel}}', {% endfor %}],
+                            datasets: [{
+                                        label: 'People by level of education',
+                                    data: [
+                                        {% for edlevel in educationlevel_year %} {{ edlevel.dcount }}, {% endfor %}
+                                    ],
+                                    backgroundColor: [
+                                        'rgba(41, 182, 246)',
+                                        'rgba(255, 167, 38)',
+                                        'rgba(149, 117, 205)',
+                                        'rgba(236, 64, 122 )',
+                                        'rgba(51, 255, 102 )',
+                                        'rgba(204, 255, 51)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(41, 182, 246)',
+                                        'rgba(255, 167, 38)',
+                                        'rgba(149, 117, 205)',
+                                        'rgba(236, 64, 122 )',
+                                        'rgba(51, 255, 102 )',
+                                        'rgba(204, 255, 51)'
+                                    ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6 my-4">
+        <div class="card bg-white">
+            <div class="card-header bg-dark text-white mx-0">
+                Flights per year
+            </div>
+            <div class="card-body">
+                <canvas id="myChart1" width="400" height="300"></canvas>
+                <script>
+                    var ctx1 = document.getElementById('myChart1').getContext('2d');
+                    var myChart1 = new Chart(ctx1, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for flights in flights_yearc %} '{{flights.year}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Flights per year',
+                        data: [{% for flights in flights_yearc %} {{ flights.dcount }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-4">
+        <div class="card bg-white">
+            <div class="card-header bg-dark text-white mx-0">
+                Flights by destination
+            </div>
+            <div class="card-body">
+                <canvas id="gfflights" width="400" height="300"></canvas>
+                <script>
+                    var gfflights = document.getElementById('gfflights').getContext('2d');
+
+                    var myChart1 = new Chart(gfflights, 
+                    {
+                        type: 'bar',
+                        label: 'Flights by destination',
+                        data: {
+                            labels: [{% for flight in flights_city %} '{{flight.city}}', {% endfor %}],
+                            datasets: [{
+                                        label: 'Flights by destination',
+                                    data: [
+                                        {% for flight in flights_city %} {{ flight.dcount }}, {% endfor %}
+                                    ],
+                                    backgroundColor: [
+                                        'rgba(41, 182, 246)',
+                                        'rgba(255, 167, 38)',
+                                        'rgba(149, 117, 205)',
+                                        'rgba(236, 64, 122 )',
+                                        'rgba(51, 255, 102 )',
+                                        'rgba(204, 255, 51)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(41, 182, 246)',
+                                        'rgba(255, 167, 38)',
+                                        'rgba(149, 117, 205)',
+                                        'rgba(236, 64, 122 )',
+                                        'rgba(51, 255, 102 )',
+                                        'rgba(204, 255, 51)'
+                                    ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="mychart3" width="400" height="300"></canvas>
+                <script>
+                    var ctx3 = document.getElementById('mychart3').getContext('2d');
+                    var mychart3 = new Chart(ctx3, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for birth in birth %} '{{birth.year}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Muertes por año',
+                        data: [{% for birth in birth %} {{ birth.cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-4">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart4" width="400" height="300"></canvas>
+                <script>
+                    var ctx4 = document.getElementById('myChart4').getContext('2d');
+                    var myChart4 = new Chart(ctx4, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for birth in birth %} '{{birth.year}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Nacimientos por año',
+                        data: [{% for birth in birth %} {{ birth.cantidad }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+{% include 'dashboard/customer_index.html' %}
+{% endif%}
+
+{% endblock %}

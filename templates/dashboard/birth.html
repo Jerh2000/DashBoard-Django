@@ -1,0 +1,64 @@
+{% extends 'partials/_Layout.html' %}
+{% block title %}Tasa de defunciones{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="card shadow px-0">
+        <div class="card-header bg-dark text-white mx-0">
+            Cartagena Births
+        </div>
+        <div class="card-body">
+           <div class="row">
+            <div class="col-md-4">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="card card-body border-0">
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <img class="img-fluid text-center" src="/media/other_images/birth.png" width="90" height="90"/>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-success btn-block w-100 mt-3" type="submit" value="Add">
+                    </form>
+                </div>
+            </div>
+                <div class="col-md-8">
+                    <table class="table table-dark table-striped">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th scope="col">Año</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Cantidad de nacimientos</th>
+                                <th scope="col">Activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for birth in birth %}
+                            <tr>
+                                <td>{{ birth.year }}</td>
+                                <td>{{ birth.categoria }}</td>
+                                <td>{{ birth.cantidad }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm mr-2"
+                                        href="{% url 'dashboard-birth-edit' birth.id %}">Edit</a>
+                                    <a class="btn btn-danger btn-sm ml-2"
+                                        href="{% url 'dashboard-births-delete' birth.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
