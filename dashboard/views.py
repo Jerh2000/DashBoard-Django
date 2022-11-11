@@ -194,6 +194,8 @@ def birth_edit(request, pk):
         if form.is_valid():
             form.save()
             return redirect('dashboard-births')
+    else:
+        form = BirthForm(request.POST, instance=item)
     context = {
         'form': form,
     }

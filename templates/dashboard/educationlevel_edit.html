@@ -4,14 +4,19 @@
 
 {% block content %}
 <div class="row my-4">
-    <div class="col-md-6 offset-md-3 p-3 bg-white">
-        <h3>Editar item</h3>
-        <hr>
-        <form>
-            {% csrf_token %}
-            {{ form|crispy }}
-            <input class="btn btn-info" type="submit" value="Confirm">
-        </form>
+    <div class="col-md-6 offset-md-3">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-dark text-white mx-0">
+                Edit Education Level
+            </div>
+            <div class="card-body">
+                <form>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-success w-100" type="submit" value="Save">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
