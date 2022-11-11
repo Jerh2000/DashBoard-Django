@@ -17,7 +17,7 @@ Cartagena Statistics Dashboard
 ## Registro de maestro de nacimientos
 ![image](https://user-images.githubusercontent.com/61768185/201369093-c08943f4-ef14-4078-a63e-03e2e55a97f5.png)
 
-##Forms Edit
+## Forms Edit
 ![image](https://user-images.githubusercontent.com/61768185/201370952-39b997b6-b610-48a9-ab95-8dad03b7b13a.png)
 
 
